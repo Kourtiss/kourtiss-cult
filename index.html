@@ -9,34 +9,39 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            background: linear-gradient(to bottom, #f4f4f4, #e0e0ff);
+            color: #333;
         }
         header {
-            background-color: #333;
-            color: black;
-            padding: 10px 20px;
+            background: linear-gradient(45deg, #6a5acd, #8a2be2);
+            color: white;
+            padding: 15px 20px;
             text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         nav {
             display: flex;
             justify-content: center;
-            background-color: #444;
+            background: #444;
             padding: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         nav a {
             color: white;
             text-decoration: none;
             margin: 0 15px;
             font-size: 18px;
+            transition: color 0.3s ease;
         }
         nav a:hover {
-            text-decoration: underline;
+            color: #ffd700;
         }
         .hero {
             text-align: center;
-            padding: 50px 20px;
-            background: url('hero-image.jpg') no-repeat center center/cover;
+            padding: 60px 20px;
+            background: url('https://placekitten.com/1200/400') no-repeat center center/cover;
             color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         }
         .hero h1 {
             font-size: 48px;
@@ -45,68 +50,97 @@
             font-size: 24px;
         }
         section {
-            padding: 20px;
-            margin: 20px;
-            background: purple;
+            padding: 30px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+        }
+        section h2 {
+            color: #6a5acd;
+        }
+        .gallery img {
+            width: 100%;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+        .gallery a {
+            text-decoration: none;
+            color: #6a5acd;
+            font-weight: bold;
         }
         footer {
             text-align: center;
-            padding: 10px;
-            background-color: #333;
+            padding: 20px;
+            background: linear-gradient(45deg, #6a5acd, #8a2be2);
             color: white;
             position: relative;
             bottom: 0;
             width: 100%;
+        }
+        footer a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Kourtiss - B3313 Compositions</h1>
+    <h1>Welcome to Kourtiss' Cult</h1>
+    <p>Your gateway to SM64 fan creations and more!</p>
 </header>
 
 <nav>
     <a href="#home">Home</a>
     <a href="#about">About</a>
-    <a href="#contact">Contact</a>
+    <a href="#gallery">Gallery</a>
     <a href="#downloads">Downloads</a>
+    <a href="#contact">Contact</a>
 </nav>
 
 <div class="hero" id="home">
-    <h1>Welcome to my website !11!!1!!</h1>
-    <p>Explore my SM64 fanmade stuff (and some more sh*t)</p>
+    <h1>Explore Unique Creations</h1>
+    <p>Discover fan-made mods, music, and much more.</p>
 </div>
 
 <section id="about">
     <h2>About Me</h2>
-    <p>Hi! I’m Kourtiss, a creator passionate about Super Mario 64 (and NSMBDS) mods and unique projects like B3313. Join me as I share my journey through my amazin' compositions. (lmao)p>
+    <p>Hi! I’m Kourtiss, a passionate creator focusing on Super Mario 64 mods, NSMBDS projects, and the B3313 phenomenon. Dive into my world of creativity and enjoy the nostalgic vibes I bring to life.</p>
 </section>
 
 <section id="gallery">
     <h2>Gallery</h2>
-    <p>Check out some highlights from my projects:</p>
-    <ul>
-        <li><a href="https://kourtisscult.com/echoes-of-the-castle"><img src="https://ibb.co/Gd12D1y" alt="Echoes of the Castle" style="max-width:100%;"></a></li>
-    </ul>
-    <p><a href="#echoes-details">Learn more about my Project, Echoes of the Castle. <a></p>
+    <div class="gallery">
+        <a href="https://kourtisscult.com/echoes-of-the-castle" target="_blank">
+            <img src="https://via.placeholder.com/900x300?text=Echoes+of+the+Castle" alt="Echoes of the Castle">
+        </a>
+        <p><a href="https://kourtisscult.com/echoes-of-the-castle" target="_blank">Learn more about Echoes of the Castle</a></p>
+    </div>
 </section>
 
-<section id="echoes-details">
-    <h2>Echoes of the Castle</h2>
-    <p>Echoes of the Castle is a project that I have been workin' on for a long time now. By completing this project, you will be able to purchase a CASSETTE of my B3313, SM64 Lost Builds  and HDC OSTs and listen to it with a more SM64 LOST SONGS style, since it'll have that distinct vintage sound alongside its white noise. This will be finished in like... a year or like 8 months, becuase the cassette is 90 minutes long. And with that, I have to spend HUNDRENDS of time to compose 90 mins of music. Also, these 2 months that I've been working on those OSTs, my only progress on this to write the half of side A. That means that i have to make atleast 10 more songs to finish side A (Each side has 45 minutes, I have recorded like 20-25) .
+<section id="downloads">
+    <h2>Downloads</h2>
+    <p>Coming soon: Get access to exclusive content like soundtracks, mods, and more. Stay tuned!</p>
 </section>
 
 <section id="contact">
     <h2>Contact</h2>
-    <p>For collaborations or inquiries, email me at <a href="skipcraftofficial@gmail.com">skipcraftofficial@gmail.com</a>.</p>
+    <p>Got questions or want to collaborate? Reach out at <a href="mailto:skipcraftofficial@gmail.com">skipcraftofficial@gmail.com</a>.</p>
 </section>
 
 <footer>
     <p>&copy; 2024 Kourtiss. All Rights Reserved.</p>
-    <p><a href="https://www.youtube.com/@kourtiss64">Visit my YouTube Channel :)</a></p>
+    <p><a href="https://www.youtube.com/@kourtiss64" target="_blank">Visit my YouTube Channel</a></p>
 </footer>
 
 </body>
