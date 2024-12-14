@@ -160,6 +160,7 @@
     </style>
     <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js"></script>
     <script>
         // Firebase Configuration
         const firebaseConfig = {
@@ -174,6 +175,7 @@
         // Initialize Firebase
         const app = firebase.initializeApp(firebaseConfig);
         const auth = firebase.getAuth(app);
+        const db = firebase.firestore(app);
 
         async function signInWithGoogle() {
             const provider = new firebase.GoogleAuthProvider();
@@ -195,6 +197,45 @@
                 console.error("Error during sign-out:", error);
             }
         }
+
+        // Load chat messages from Firestore
+        async function loadMessages() {
+            const messagesSnapshot = await db.collection('messages').orderBy('timestamp').get();
+            const chatBox = document.querySelector('.chat-box');
+            chatBox.innerHTML = '';
+            messagesSnapshot.forEach(doc => {
+                const message = doc.data();
+                const messageElement = document.createElement('p');
+                messageElement.textContent = `${message.name}: ${message.text}`;
+                chatBox.appendChild(messageElement);
+            });
+        }
+
+        // Add a new message to Firestore
+        async function sendMessage(event) {
+            event.preventDefault();
+            const messageInput = document.querySelector('.chat-form input[type="text"]');
+            const messageText = messageInput.value;
+            if (messageText.trim() === '') return;
+
+            const user = auth.currentUser;
+            if (user) {
+                await db.collection('messages').add({
+                    name: user.displayName,
+                    text: messageText,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                });
+                messageInput.value = '';
+                loadMessages();
+            } else {
+                alert('You must be signed in to send messages.');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadMessages();
+            document.querySelector('.chat-form').addEventListener('submit', sendMessage);
+        });
     </script>
 </head>
 <body>
@@ -205,6 +246,7 @@
     <div class="auth-buttons">
         <button onclick="signInWithGoogle()">Sign in with Google</button>
         <button onclick="signOutUser()">Sign out</button>
+        <button onclick="window.location.href='https://www.youtube.com/channel/YOUR_CHANNEL_ID/about'">Join our Discord</button>
     </div>
 </header>
 
@@ -220,40 +262,4 @@
 <div class="hero" id="home">
     <h1>Explore Unique Creations</h1>
     <p>Discover fan-made mods, music, and much more.</p>
-</div>
-
-<section id="about">
-    <h2>About Me</h2>
-    <p>Hi! I’m Kourtiss, a passionate creator focusing on Super Mario 64 mods, NSMBDS projects, and the B3313 phenomenon. Dive into my world of creativity and enjoy the nostalgic vibes I bring to life.</p>
-</section>
-
-<section id="gallery">
-    <h2>Gallery</h2>
-    <div class="gallery">
-        <a href="https://kourtisscult.com/echoes-of-the-castle" target="_blank">
-            <img src="https://via.placeholder.com/900x300?text=Echoes+of+the+Castle" alt="Echoes of the Castle">
-        </a>
-        <p><a href="https://kourtisscult.com/echoes-of-the-castle" target="_blank">Learn more about Echoes of the Castle</a></p>
-    </div>
-</section>
-
-<section id="downloads">
-    <h2>Downloads</h2>
-    <p>Coming soon...</p>
-</section>
-
-<section id="chat">
-    <h2>Community Chat</h2>
-    <div class="chat-box">
-        <p>Botiss: Hello everyone!</p>
-        <p>Mayro64izDaBezt: this place is awesome !!</p>
-    </div>
-    <form class="chat-form">
-        <input type="text" placeholder="Type your message here...">
-        <button type="button">Send</button>
-    </form>
-</section>
-
-<section id="contact">
-    <h2>Contact</h2>
-    <p>If you have any questions or just want to say hi, feel free to reach out to me at <a href="skipcraftofficial@gmail.com">kourtiss' Email :)
+</div
