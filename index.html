@@ -163,12 +163,12 @@
     <script>
         // Firebase Configuration
         const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
+            apiKey: "AIzaSyAGRaMM_tkHi1gC5jxm8O29mq5qoSaX3lA",
             authDomain: "YOUR_AUTH_DOMAIN",
-            projectId: "YOUR_PROJECT_ID",
+            projectId: "kourtiss-cult",
             storageBucket: "YOUR_STORAGE_BUCKET",
-            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-            appId: "YOUR_APP_ID"
+            messagingSenderId: "253397563801",
+            appId: "1:253397563801:web:28c351b1817ee079157b08"
         };
 
         // Initialize Firebase
@@ -181,6 +181,7 @@
                 const result = await firebase.signInWithPopup(auth, provider);
                 const user = result.user;
                 alert(`Welcome, ${user.displayName}!`);
+                window.location.href = "https://kourtiss.auth/";
             } catch (error) {
                 console.error("Error during sign-in:", error);
             }
@@ -237,4 +238,22 @@
 </section>
 
 <section id="downloads">
-    <
+    <h2>Downloads</h2>
+    <p>Coming soon...</p>
+</section>
+
+<section id="chat">
+    <h2>Community Chat</h2>
+    <div class="chat-box">
+        <p>User1: Hello everyone!</p>
+        <p>User2: Hi! Welcome to the community!</p>
+    </div>
+    <form class="chat-form">
+        <input type="text" placeholder="Type your message here...">
+        <button type="button">Send</button>
+    </form>
+</section>
+
+<section id="contact">
+    <h2>Contact</h2>
+    <p>If you have any questions or just want to say hi, feel free to reach out to me at <a href="mailto:kourtiss@example.com">kourt
