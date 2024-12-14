@@ -139,7 +139,61 @@
         .chat-form button:hover {
             background: #8a2be2;
         }
+        .auth-buttons {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .auth-buttons button {
+            padding: 10px 20px;
+            background: #8a2be2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+        .auth-buttons button:hover {
+            background: #6a5acd;
+        }
     </style>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-auth.js"></script>
+    <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.getAuth(app);
+
+        async function signInWithGoogle() {
+            const provider = new firebase.GoogleAuthProvider();
+            try {
+                const result = await firebase.signInWithPopup(auth, provider);
+                const user = result.user;
+                alert(`Welcome, ${user.displayName}!`);
+            } catch (error) {
+                console.error("Error during sign-in:", error);
+            }
+        }
+
+        async function signOutUser() {
+            try {
+                await firebase.signOut(auth);
+                alert("Signed out successfully.");
+            } catch (error) {
+                console.error("Error during sign-out:", error);
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -180,6 +234,11 @@
 <section id="downloads">
     <h2>Downloads</h2>
     <p>Coming soon: Get access to exclusive content like soundtracks, mods, and more. Stay tuned!</p>
+</section>
+
+<section class="auth-buttons">
+    <button onclick="signInWithGoogle()">Sign in with Google</button>
+    <button onclick="signOutUser()">Sign out</button>
 </section>
 
 <section id="chat" class="chat-section">
